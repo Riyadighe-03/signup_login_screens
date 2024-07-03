@@ -27,10 +27,10 @@ class _LogInState extends State<LogIn> {
       body: Container(
         alignment: Alignment.center,
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/bac_login.jpg"),
-            fit: BoxFit.cover,
-          ),
+          // image: DecorationImage(
+          //   image: AssetImage("assets/bac_login.jpg"),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(left: 30, right: 30),

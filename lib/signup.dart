@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:second_project/login.dart';
+import 'package:second_project/otp.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -26,9 +27,9 @@ class _HomeState extends State<SignUp> {
       body: Container(
         alignment: Alignment.center,
         decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/bac_signup.webp"), fit: BoxFit.cover),
-        ),
+            // image: DecorationImage(
+            //     image: AssetImage("assets/bac_signup.webp"), fit: BoxFit.cover),
+            ),
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(left: 30, right: 30),
           child: Form(
@@ -112,7 +113,33 @@ class _HomeState extends State<SignUp> {
               const SizedBox(
                 height: 10,
               ),
-              Row(
+              TextFormField(
+                obscureText: !isVisible,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    labelText: "Mobile Number",
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
+                        },
+                        icon: Icon(
+                            isVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.grey)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    )),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Mobile Number';
+                  }
+                  return null;
+                },
+              ),
+              /* Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
@@ -120,12 +147,12 @@ class _HomeState extends State<SignUp> {
                       child: const Text("Forgot password?",
                           style: TextStyle(color: Colors.white))),
                 ],
-              ),
+              ),*/
               const SizedBox(height: 8),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.blue,
                   ),
                   onPressed: () async {
                     setState(() {
@@ -142,7 +169,7 @@ class _HomeState extends State<SignUp> {
 
                       if (newUser != null) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (Buildcontext) => LogIn()));
+                            builder: (Buildcontext) => OTPScreen()));
                       }
                     } catch (e) {
                       print('Error: $e');
